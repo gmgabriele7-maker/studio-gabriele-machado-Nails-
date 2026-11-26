@@ -1,307 +1,3 @@
-index.html```html
-<!DOCTYPE html>
-<html lang="pt-BR" class="scroll-smooth">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Studio Gabriele Machado — Nail Designer & Estética | Altamira - PA</title>
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts: Cormorant Garamond & Plus Jakarta Sans -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        serif: ['"Cormorant Garamond"', 'Georgia', 'serif'],
-                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
-                    },
-                    colors: {
-                        cream: {
-                            50: '#FDFBF9',
-                            100: '#F9F5F0',
-                            200: '#F2EAE0',
-                            300: '#E6D8C8',
-                        },
-                        rosegold: {
-                            300: '#DFB6AC',
-                            400: '#CE9688',
-                            500: '#B87A6B',
-                            600: '#9E6153',
-                            700: '#7D4B40',
-                        },
-                        charcoal: {
-                            800: '#3D3532',
-                            900: '#2A2421',
-                        }
-                    }
-                }
-            }
-        }
-    </script>
-
-    <style>
-        /* Estilos Base e Micro-interações */
-        body {
-            background-color: #FDFBF9;
-            color: #2A2421;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        .font-display {
-            font-family: 'Cormorant Garamond', Georgia, serif;
-        }
-
-        .glass-card {
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(223, 182, 172, 0.35);
-        }
-
-        .service-card {
-            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-        }
-
-        .service-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 24px -8px rgba(184, 122, 107, 0.18);
-            border-color: #CE9688;
-        }
-
-        /* Estilo de input editável sutil para preços */
-        .editable-price {
-            border-bottom: 1px dashed rgba(184, 122, 107, 0.5);
-            transition: all 0.2s ease;
-        }
-        .editable-price:focus {
-            outline: none;
-            background-color: #F9F5F0;
-            border-bottom: 1px solid #B87A6B;
-            padding: 0 4px;
-            border-radius: 4px;
-        }
-
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #F9F5F0;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #DFB6AC;
-            border-radius: 9999px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #B87A6B;
-        }
-
-        /* =========================================================
-           OTIMIZAÇÃO EXCLUSIVA PARA IMPRESSÃO / EXPORTAÇÃO EM PDF
-           ========================================================= */
-        @media print {
-            @page {
-                size: A4 portrait;
-                margin: 12mm 14mm;
-            }
-
-            body {
-                background-color: #FFFFFF !important;
-                color: #2A2421 !important;
-                font-size: 10.5pt !important;
-                -webkit-print-color-adjust: exact !important;
-                print-color-adjust: exact !important;
-            }
-
-            /* Ocultar elementos estritamente interativos de navegação/web */
-            .no-print {
-                display: none !important;
-            }
-
-            /* Exibir elementos exclusivos para impressão se necessário */
-            .print-only {
-                display: block !important;
-            }
-
-            /* Ajustes de espaçamento para caber perfeitamente em páginas limpas */
-            header {
-                padding-top: 10px !important;
-                padding-bottom: 16px !important;
-                background: #FDFBF9 !important;
-                border-bottom: 1.5px solid #DFB6AC !important;
-            }
-
-            section {
-                padding-top: 14px !important;
-                padding-bottom: 14px !important;
-            }
-
-            /* Evitar quebras de página no meio de cards e blocos */
-            .service-card, .rule-block, .print-avoid-break {
-                break-inside: avoid !important;
-                page-break-inside: avoid !important;
-                box-shadow: none !important;
-                border: 1px solid #E6D8C8 !important;
-                background-color: #FFFFFF !important;
-            }
-
-            .editable-price {
-                border-bottom: none !important;
-            }
-
-            /* Ajustar grids para 2 colunas no A4 */
-            .print-grid-2 {
-                display: grid !important;
-                grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-                gap: 10px !important;
-            }
-
-            /* Mostrar resumo de agendamento apenas se o cliente preencheu algo */
-            #booking-section.empty-booking {
-                display: none !important;
-            }
-        }
-    </style>
-</head>
-<body class="selection:bg-rosegold-300 selection:text-charcoal-900">
-
-    <!-- Barra Superior Flutuante (Ações Rápidas & PDF) -->
-    <nav class="no-print sticky top-0 z-50 bg-cream-50/90 backdrop-blur-md border-b border-cream-200 transition-all">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-2">
-            <!-- Marca -->
-            <a href="#" class="flex items-center gap-2.5 group">
-                <span class="w-9 h-9 rounded-full bg-gradient-to-br from-rosegold-400 to-rosegold-600 text-white flex items-center justify-center font-display text-lg font-bold shadow-sm group-hover:scale-105 transition-transform">
-                    GM
-                </span>
-                <div class="leading-tight">
-                    <span class="font-display text-lg sm:text-xl font-bold tracking-wide text-charcoal-900 block">Gabriele Machado</span>
-                    <span class="text-[10px] uppercase tracking-[0.2em] text-rosegold-600 font-medium block">Nail Designer & Estética</span>
-                </div>
-            </a>
-
-            <!-- Links de Navegação Desktop -->
-            <div class="hidden md:flex items-center gap-6 text-sm font-medium text-charcoal-800">
-                <a href="#catalogo" class="hover:text-rosegold-600 transition-colors">Catálogo de Serviços</a>
-                <a href="#agendamento" class="hover:text-rosegold-600 transition-colors">Simular Agendamento</a>
-                <a href="#cuidados" class="hover:text-rosegold-600 transition-colors">Regras & Cuidados</a>
-            </div>
-
-            <!-- Botões de Ação -->
-            <div class="flex items-center gap-2">
-                <button onclick="exportarPDF()" title="Baixar catálogo e ficha em PDF" class="inline-flex items-center gap-2 px-3.5 py-2 rounded-full text-xs sm:text-sm font-medium bg-cream-200/80 hover:bg-cream-300 text-charcoal-900 border border-rosegold-300/60 transition-all cursor-pointer">
-                    <i class="fa-solid fa-file-pdf text-rosegold-600"></i>
-                    <span class="hidden sm:inline">Salvar / Baixar PDF</span>
-                    <span class="sm:hidden">PDF</span>
-                </button>
-                <a href="#agendamento" class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs sm:text-sm font-semibold bg-gradient-to-r from-rosegold-500 to-rosegold-600 hover:from-rosegold-600 hover:to-rosegold-700 text-white shadow-sm hover:shadow transition-all">
-                    <i class="fa-regular fa-calendar-check"></i>
-                    <span>Agendar</span>
-                </a>
-            </div>
-        </div>
-    </nav>
-
-    <!-- 1. CABEÇALHO / HERO SECTION -->
-    <header class="relative overflow-hidden bg-gradient-to-b from-cream-100 via-cream-50 to-cream-50 pt-10 pb-14 sm:pt-16 sm:pb-20 border-b border-cream-200/70">
-        <!-- Elementos decorativos sutis -->
-        <div class="no-print absolute -top-24 -right-24 w-80 h-80 rounded-full bg-rosegold-300/15 blur-3xl pointer-events-none"></div>
-        <div class="no-print absolute top-40 -left-20 w-72 h-72 rounded-full bg-cream-300/30 blur-3xl pointer-events-none"></div>
-
-        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-            <!-- Selo de Localização -->
-            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-rosegold-300/50 shadow-xs mb-6">
-                <i class="fa-solid fa-location-dot text-rosegold-500 text-xs"></i>
-                <span class="text-xs font-medium tracking-wide text-charcoal-800">
-                    Altamira - PA • Atendimento no Studio & em Domicílio
-                </span>
-            </div>
-
-            <!-- Título Principal -->
-            <h1 class="font-display text-4xl sm:text-5xl md:text-6xl font-bold text-charcoal-900 tracking-tight leading-[1.12] mb-4">
-                Studio Gabriele Machado
-                <span class="block text-2xl sm:text-3xl md:text-4xl font-normal italic text-rosegold-600 mt-1">
-                    Nail Designer & Estética
-                </span>
-            </h1>
-
-            <!-- Subtítulo Convidativo -->
-            <p class="max-w-2xl mx-auto text-sm sm:text-base md:text-lg text-charcoal-800/85 font-light leading-relaxed mb-8">
-                Realçando a beleza natural das suas mãos, pés e olhar com técnicas modernas, biossegurança rigorosa e atendimento acolhedor pensado exclusivamente para você.
-            </p>
-
-            <!-- Botões de Ação Rápida (Ocultos na impressão) -->
-            <div class="no-print flex flex-col sm:flex-row items-center justify-center gap-3.5">
-                <a href="#agendamento" class="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-full bg-charcoal-900 hover:bg-charcoal-800 text-cream-50 text-sm font-semibold shadow-md hover:shadow-lg transition-all">
-                    <i class="fa-brands fa-whatsapp text-lg text-rosegold-300"></i>
-                    <span>Agendar Horário Agora</span>
-                </a>
-                <a href="#catalogo" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full bg-white hover:bg-cream-100 text-charcoal-900 border border-rosegold-300 text-sm font-medium transition-all">
-                    <span>Explorar Catálogo de Serviços</span>
-                    <i class="fa-solid fa-arrow-down text-xs text-rosegold-500"></i>
-                </a>
-            </div>
-
-            <!-- Destaques Rápidos -->
-            <div class="grid grid-cols-3 gap-3 sm:gap-6 max-w-2xl mx-auto mt-10 pt-8 border-t border-cream-200">
-                <div class="text-center">
-                    <span class="block font-display text-xl sm:text-2xl font-bold text-rosegold-600">100%</span>
-                    <span class="text-[11px] sm:text-xs text-charcoal-800/75">Biossegurança & Cuidado</span>
-                </div>
-                <div class="text-center border-x border-cream-200 px-2">
-                    <span class="block font-display text-xl sm:text-2xl font-bold text-rosegold-600">Personalizado</span>
-                    <span class="text-[11px] sm:text-xs text-charcoal-800/75">Studio ou Domicílio</span>
-                </div>
-                <div class="text-center">
-                    <span class="block font-display text-xl sm:text-2xl font-bold text-rosegold-600">Alta Durabilidade</span>
-                    <span class="text-[11px] sm:text-xs text-charcoal-800/75">Produtos Premium</span>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <!-- 2. CATÁLOGO COMPLETO DE SERVIÇOS -->
-    <section id="catalogo" class="py-14 sm:py-20 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <!-- Cabeçalho da Seção -->
-        <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
-            <div>
-                <span class="text-xs uppercase tracking-[0.22em] text-rosegold-600 font-semibold block mb-1.5">Menu de Procedimentos</span>
-                <h2 class="font-display text-3xl sm:text-4xl font-bold text-charcoal-900">Catálogo de Serviços</h2>
-            </div>
-            <div class="no-print flex items-center gap-2 text-xs text-charcoal-800/75 bg-cream-100 px-3.5 py-2 rounded-xl border border-cream-200">
-                <i class="fa-solid fa-pen-to-square text-rosegold-500"></i>
-                <span>Dica: Clique nos valores para editar antes de gerar o PDF ou marque os serviços para simular.</span>
-            </div>
-        </div>
-
-        <!-- Filtros de Categoria (Apenas Web) -->
-        <div class="no-print flex flex-wrap gap-2 mb-8" id="category-filters">
-            <button onclick="filtrarCategoria('todos')" data-filter="todos" class="filter-btn active px-4 py-2 rounded-full text-xs sm:text-sm font-medium bg-charcoal-900 text-white transition-all cursor-pointer">
-                Todos os Serviços
-            </button>
-            <button onclick="filtrarCategoria('naturais')" data-filter="naturais" class="filter-btn px-4 py-2 rounded-full text-xs sm:text-sm font-medium bg-white text-charcoal-800 border border-cream-300 hover:border-rosegold-400 transition-all cursor-pointer">
-                Unhas Naturais & Cutilagem
-            </button>
-            <button onclick="filtrarCategoria('alongamentos')" data-filter="alongamentos" class="filter-btn px-4 py-2 rounded-full text-xs sm:text-sm font-medium bg-white text-charcoal-800 border border-cream-300 hover:border-rosegold-400 transition-all cursor-pointer">
-                Alongamentos & Nail Art
-            </button>
-            <button onclick="filtrarCategoria('especiais')" data-filter="especiais" class="filter-btn px-4 py-2 rounded-full text-xs sm:text-sm font-medium bg-white text-charcoal-800 border border-cream-300 hover:border-rosegold-400 transition-all cursor-pointer">
-                SPA & Cuidados Especiais
-            </button>
-            <button onclick="filtrarCategoria('olhar')" data-filter="olhar" class="filter-btn px-4 py-2 rounded-full text-xs sm:text-sm font-medium bg-white text-charcoal-800 border border-cream-300 hover:border-rosegold-400 transition-all cursor-pointer">
-                Sobrancelhas & Cílios
-            </button>
-        </div>
-
-        <!-- Container das Categorias -->
-        <div class="space-y-12" id="services-container">
-            
             <!-- CATEGORIA 1: Unhas Naturais & Cutilagem -->
             <div class="category-group" data-category="naturais">
                 <div class="flex items-center gap-3 mb-5 border-b border-cream-200 pb-2.5">
@@ -315,19 +11,19 @@ index.html```html
                     <div class="service-card bg-white rounded-2xl p-5 border border-cream-200 flex flex-col justify-between">
                         <div>
                             <div class="flex justify-between items-start gap-3 mb-2">
-                                <h4 class="font-semibold text-base text-charcoal-900">Manicure & Pedicure Tradicional</h4>
+                                <h4 class="font-semibold text-base text-charcoal-900">Manicure Tradicional</h4>
                                 <div class="text-right shrink-0">
                                     <span class="text-xs text-rosegold-600 font-medium">R$</span>
-                                    <span contenteditable="true" class="editable-price font-display text-xl font-bold text-charcoal-900" data-price-id="manicure-pedicure">60,00</span>
+                                    <span contenteditable="true" class="editable-price font-display text-xl font-bold text-charcoal-900" data-price-id="manicure-tradicional">30,00</span>
                                 </div>
                             </div>
                             <p class="text-xs sm:text-sm text-charcoal-800/75 leading-relaxed mb-4">
-                                Corte, lixamento técnico, hidratação, cutilagem clássica cuidadosa e esmaltação impecável (opção avulsa ou combo mãos e pés).
+                                Corte, lixamento e cutilagem cuidadosa das unhas das mãos.
                             </p>
                         </div>
                         <div class="no-print flex items-center justify-between pt-3 border-t border-cream-100">
-                            <span class="text-[11px] text-charcoal-800/60"><i class="fa-regular fa-clock mr-1"></i> ~1h30</span>
-                            <button onclick="toggleServico(this, 'Manicure & Pedicure Tradicional', 'manicure-pedicure')" class="select-service-btn inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-medium bg-cream-100 hover:bg-rosegold-500 hover:text-white text-charcoal-900 transition-colors cursor-pointer">
+                            <span class="text-[11px] text-charcoal-800/60"><i class="fa-regular fa-clock mr-1"></i> ~45min</span>
+                            <button onclick="toggleServico(this, 'Manicure Tradicional', 'manicure-tradicional')" class="select-service-btn inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-medium bg-cream-100 hover:bg-rosegold-500 hover:text-white text-charcoal-900 transition-colors cursor-pointer">
                                 <i class="fa-solid fa-plus text-[10px]"></i>
                                 <span>Selecionar</span>
                             </button>
@@ -338,19 +34,19 @@ index.html```html
                     <div class="service-card bg-white rounded-2xl p-5 border border-cream-200 flex flex-col justify-between">
                         <div>
                             <div class="flex justify-between items-start gap-3 mb-2">
-                                <h4 class="font-semibold text-base text-charcoal-900">Cutilagem Russa (Combinada)</h4>
+                                <h4 class="font-semibold text-base text-charcoal-900">Pedicure Tradicional</h4>
                                 <div class="text-right shrink-0">
                                     <span class="text-xs text-rosegold-600 font-medium">R$</span>
-                                    <span contenteditable="true" class="editable-price font-display text-xl font-bold text-charcoal-900" data-price-id="cutilagem-russa">75,00</span>
+                                    <span contenteditable="true" class="editable-price font-display text-xl font-bold text-charcoal-900" data-price-id="pedicure-tradicional">40,00</span>
                                 </div>
                             </div>
                             <p class="text-xs sm:text-sm text-charcoal-800/75 leading-relaxed mb-4">
-                                Técnica a seco com brocas diamantadas de alta precisão que proporciona acabamento limpo, seguro e retarda o crescimento da cutícula.
+                                Tratamento completo dos pés: lixamento, hidratação e cuidados com as unhas.
                             </p>
                         </div>
                         <div class="no-print flex items-center justify-between pt-3 border-t border-cream-100">
-                            <span class="text-[11px] text-charcoal-800/60"><i class="fa-regular fa-clock mr-1"></i> ~1h15</span>
-                            <button onclick="toggleServico(this, 'Cutilagem Russa', 'cutilagem-russa')" class="select-service-btn inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-medium bg-cream-100 hover:bg-rosegold-500 hover:text-white text-charcoal-900 transition-colors cursor-pointer">
+                            <span class="text-[11px] text-charcoal-800/60"><i class="fa-regular fa-clock mr-1"></i> ~1h</span>
+                            <button onclick="toggleServico(this, 'Pedicure Tradicional', 'pedicure-tradicional')" class="select-service-btn inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-medium bg-cream-100 hover:bg-rosegold-500 hover:text-white text-charcoal-900 transition-colors cursor-pointer">
                                 <i class="fa-solid fa-plus text-[10px]"></i>
                                 <span>Selecionar</span>
                             </button>
@@ -358,4 +54,134 @@ index.html```html
                     </div>
 
                     <!-- Serviço 1.3 -->
-                    <div class="service-card bg-white rounded-2xl p-5 border border-cream-200 flex f
+                    <div class="service-card bg-white rounded-2xl p-5 border border-cream-200 flex flex-col justify-between">
+                        <div>
+                            <div class="flex justify-between items-start gap-3 mb-2">
+                                <h4 class="font-semibold text-base text-charcoal-900">Manicure com Esmaltação em Gel</h4>
+                                <div class="text-right shrink-0">
+                                    <span class="text-xs text-rosegold-600 font-medium">R$</span>
+                                    <span contenteditable="true" class="editable-price font-display text-xl font-bold text-charcoal-900" data-price-id="manicure-gel">50,00</span>
+                                </div>
+                            </div>
+                            <p class="text-xs sm:text-sm text-charcoal-800/75 leading-relaxed mb-4">
+                                Cuidados completos com as unhas das mãos + esmaltação em gel com brilho e durabilidade.
+                            </p>
+                        </div>
+                        <div class="no-print flex items-center justify-between pt-3 border-t border-cream-100">
+                            <span class="text-[11px] text-charcoal-800/60"><i class="fa-regular fa-clock mr-1"></i> ~1h</span>
+                            <button onclick="toggleServico(this, 'Manicure com Esmaltação em Gel', 'manicure-gel')" class="select-service-btn inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-medium bg-cream-100 hover:bg-rosegold-500 hover:text-white text-charcoal-900 transition-colors cursor-pointer">
+                                <i class="fa-solid fa-plus text-[10px]"></i>
+                                <span>Selecionar</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Serviço 1.4 -->
+                    <div class="service-card bg-white rounded-2xl p-5 border border-cream-200 flex flex-col justify-between">
+                        <div>
+                            <div class="flex justify-between items-start gap-3 mb-2">
+                                <h4 class="font-semibold text-base text-charcoal-900">Pedicure com Esmaltação em Gel</h4>
+                                <div class="text-right shrink-0">
+                                    <span class="text-xs text-rosegold-600 font-medium">R$</span>
+                                    <span contenteditable="true" class="editable-price font-display text-xl font-bold text-charcoal-900" data-price-id="pedicure-gel">50,00</span>
+                                </div>
+                            </div>
+                            <p class="text-xs sm:text-sm text-charcoal-800/75 leading-relaxed mb-4">
+                                Tratamento completo dos pés + esmaltação em gel de longa duração.
+                            </p>
+                        </div>
+                        <div class="no-print flex items-center justify-between pt-3 border-t border-cream-100">
+                            <span class="text-[11px] text-charcoal-800/60"><i class="fa-regular fa-clock mr-1"></i> ~1h15</span>
+                            <button onclick="toggleServico(this, 'Pedicure com Esmaltação em Gel', 'pedicure-gel')" class="select-service-btn inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-medium bg-cream-100 hover:bg-rosegold-500 hover:text-white text-charcoal-900 transition-colors cursor-pointer">
+                                <i class="fa-solid fa-plus text-[10px]"></i>
+                                <span>Selecionar</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Serviço 1.5 -->
+                    <div class="service-card bg-white rounded-2xl p-5 border border-cream-200 flex flex-col justify-between">
+                        <div>
+                            <div class="flex justify-between items-start gap-3 mb-2">
+                                <h4 class="font-semibold text-base text-charcoal-900">Pedicure SPA</h4>
+                                <div class="text-right shrink-0">
+                                    <span class="text-xs text-rosegold-600 font-medium">R$</span>
+                                    <span contenteditable="true" class="editable-price font-display text-xl font-bold text-charcoal-900" data-price-id="pedicure-spa">80,00</span>
+                                </div>
+                            </div>
+                            <p class="text-xs sm:text-sm text-charcoal-800/75 leading-relaxed mb-4">
+                                Hidratação profunda, esfoliação, massagem relaxante e cuidados especiais para seus pés.
+                            </p>
+                        </div>
+                        <div class="no-print flex items-center justify-between pt-3 border-t border-cream-100">
+                            <span class="text-[11px] text-charcoal-800/60"><i class="fa-regular fa-clock mr-1"></i> ~1h30</span>
+                            <button onclick="toggleServico(this, 'Pedicure SPA', 'pedicure-spa')" class="select-service-btn inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-medium bg-cream-100 hover:bg-rosegold-500 hover:text-white text-charcoal-900 transition-colors cursor-pointer">
+                                <i class="fa-solid fa-plus text-[10px]"></i>
+                                <span>Selecionar</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CATEGORIA 2: Alongamentos & Nail Art -->
+            <div class="category-group" data-category="alongamentos">
+                <div class="flex items-center gap-3 mb-5 border-b border-cream-200 pb-2.5">
+                    <span class="w-8 h-8 rounded-full bg-cream-200 text-rosegold-600 flex items-center justify-center text-sm">
+                        <i class="fa-solid fa-magic"></i>
+                    </span>
+                    <h3 class="font-display text-2xl font-bold text-charcoal-900">Alongamentos & Nail Art</h3>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 print-grid-2">
+                    <!-- Serviço 2.1 -->
+                    <div class="service-card bg-white rounded-2xl p-5 border border-cream-200 flex flex-col justify-between">
+                        <div>
+                            <div class="flex justify-between items-start gap-3 mb-2">
+                                <h4 class="font-semibold text-base text-charcoal-900">Postiça Realista</h4>
+                                <div class="text-right shrink-0">
+                                    <span class="text-xs text-rosegold-600 font-medium">R$</span>
+                                    <span contenteditable="true" class="editable-price font-display text-xl font-bold text-charcoal-900" data-price-id="postica-realista">70,00</span>
+                                </div>
+                            </div>
+                            <p class="text-xs sm:text-sm text-charcoal-800/75 leading-relaxed mb-4">
+                                Unhas postiças com acabamento natural e realista, com durabilidade de 15 a 20 dias.
+                            </p>
+                        </div>
+                        <div class="no-print flex items-center justify-between pt-3 border-t border-cream-100">
+                            <span class="text-[11px] text-charcoal-800/60"><i class="fa-regular fa-clock mr-1"></i> ~1h30</span>
+                            <button onclick="toggleServico(this, 'Postiça Realista', 'postica-realista')" class="select-service-btn inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-medium bg-cream-100 hover:bg-rosegold-500 hover:text-white text-charcoal-900 transition-colors cursor-pointer">
+                                <i class="fa-solid fa-plus text-[10px]"></i>
+                                <span>Selecionar</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Serviço 2.2 -->
+                    <div class="service-card bg-white rounded-2xl p-5 border border-cream-200 flex flex-col justify-between">
+                        <div>
+                            <div class="flex justify-between items-start gap-3 mb-2">
+                                <h4 class="font-semibold text-base text-charcoal-900">Banho em Gel Simples</h4>
+                                <div class="text-right shrink-0">
+                                    <span class="text-xs text-rosegold-600 font-medium">R$</span>
+                                    <span contenteditable="true" class="editable-price font-display text-xl font-bold text-charcoal-900" data-price-id="banho-gel">60,00</span>
+                                </div>
+                            </div>
+                            <p class="text-xs sm:text-sm text-charcoal-800/75 leading-relaxed mb-4">
+                                Fortalecimento e proteção das unhas naturais com aplicação de gel.
+                            </p>
+                        </div>
+                        <div class="no-print flex items-center justify-between pt-3 border-t border-cream-100">
+                            <span class="text-[11px] text-charcoal-800/60"><i class="fa-regular fa-clock mr-1"></i> ~1h</span>
+                            <button onclick="toggleServico(this, 'Banho em Gel Simples', 'banho-gel')" class="select-service-btn inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-medium bg-cream-100 hover:bg-rosegold-500 hover:text-white text-charcoal-900 transition-colors cursor-pointer">
+                                <i class="fa-solid fa-plus text-[10px]"></i>
+                                <span>Selecionar</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Serviço 2.3 -->
+                    <div class="service-card bg-white rounded-2xl p-5 border border-cream-200 flex flex-col justify-between">
+                        <div>
+                            <div class="flex justify-between items-start gap-3 mb-2">
+                                <h4 class="font-semibold
+
