@@ -1,5 +1,5 @@
 ```html
-<!DOCTYPE html>
+<!index.html>
 <html lang="pt-BR" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
